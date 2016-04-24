@@ -1,0 +1,11 @@
+# Flask
+flask>=0.10.1
+# Flask depends Werkzeug, Jinja2 and itsdangerous
+
+# Flask Extensions
+Jinja2>=2.4
+
+
+
+#database
+pymongo>=3.2.2
