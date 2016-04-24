@@ -4,8 +4,11 @@ flask>=0.10.1
 
 # Flask Extensions
 Jinja2>=2.4
-
+# Flask-Script is an extension that adds command line options to Flask
+flask-script>=2.0.5
 
 
 #database
 pymongo>=3.2.2
+
+flask-bootstrap

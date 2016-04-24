@@ -1,7 +1,10 @@
 from flask import Flask
+from config import config
 
+from flask.ext.bootstrap import Bootstrap
+bootstrap = Bootstrap()
 
-def create_app(object_name, env="prod"):
+def create_app(config_name):
     """
     An flask application factory, as explained here:
     http://flask.pocoo.org/docs/patterns/appfactories/
@@ -15,8 +18,9 @@ def create_app(object_name, env="prod"):
 
     app = Flask(__name__, template_folder="templates", static_folder="static")
 
-    app.config.from_object(object_name)
-    app.config['ENV'] = env
+    app.config.from_object(config[config_name])
+
+    bootstrap.init_app(app)
 
     # register our blueprints
     from routes.main import main
@@ -24,5 +28,8 @@ def create_app(object_name, env="prod"):
 
     from routes.user import user
     app.register_blueprint(user)
+
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     return app
